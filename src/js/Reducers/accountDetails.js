@@ -1,6 +1,6 @@
 const initialState = {
 	accountName: "",	
-	businesName: "",
+	businessName: "",
 	companyNumber: "",
 	postcode: "",
 	address: "",

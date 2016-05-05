@@ -6745,8 +6745,30 @@ body {
   margin-top: 10px;
   font-size: 18px;
 }
+label .glyphicon {
+  margin-right: 5px;
+}
+.required {
+  color: #CE2126;
+}
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:active:focus {
+  background: #5CBFCB;
+  border: 1px solid #5CBFCB;
+}
+.btn-primary:hover {
+  color: #046A6C;
+}
 #content {
   padding-top: 30px;
+}
+#content .wrapper {
+  background: rgba(0, 0, 0, 0.18);
+  padding: 17px 0;
+  border-radius: 5px;
 }
 #content #signup-form-tabs .nav-tabs {
   border-bottom: 1px solid #5CBFCB;
@@ -6756,7 +6778,7 @@ body {
 }
 #content #signup-form-tabs .nav-tabs li a:hover {
   background: none;
-  border: 1px solid #058184;
+  border: 1px solid #046A6C;
   border-bottom: 1px solid #5CBFCB;
   color: #5CBFCB;
 }
@@ -6769,4 +6791,21 @@ body {
 }
 #content .tab-content {
   margin-top: 20px;
+}
+#content .burst {
+  margin: 29px 0;
+  text-align: center;
+}
+#content .burst img {
+  width: 100px;
+}
+#content .footer-left {
+  float: left;
+  margin-top: 10px;
+  margin-left: 15px;
+}
+#content .footer-right {
+  float: right;
+  margin-right: 15px;
+  width: 140px;
 }

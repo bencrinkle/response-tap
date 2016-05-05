@@ -14,7 +14,6 @@ const validateSuccessAction = () => {
 export const validate = (validationTypes, value) => {
 
 	return (dispatch) => {
-		console.log(validationTypes);
 		validationTypes.forEach((t) => {
 			switch(t){
 				case "required":

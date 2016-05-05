@@ -1,7 +1,6 @@
-const updateTabAction = (tab) => {
+const updateTabAction = () => {
 	return {
-		type: 'UPDATE_TAB',
-		tab
+		type: 'UPDATE_TAB'
 	};
 };
 
@@ -29,9 +28,9 @@ const updateBillingContactAction = (key, value) => {
 	}
 }
 
-export const updateTab = (tab) => {
+export const updateTab = () => {
 	return (dispatch) => {
-		dispatch(updateTabAction(tab));
+		dispatch(updateTabAction());
 	};
 };
 

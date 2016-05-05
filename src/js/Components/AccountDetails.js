@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, ControlLabel, FormControl, Col, Glyphicon, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Form, FormGroup, ControlLabel, FormControl, Col, Glyphicon, OverlayTrigger, Tooltip, InputGroup, Button } from 'react-bootstrap';
 
 export default class AccountDetails extends Component {
 	render(){
-		const { accountDetails, updateAccountDetails, validate } = this.props;
+		const { accountDetails, updateAccountDetails } = this.props;
 
 		const tooltip = (
-	  		<Tooltip>This is a tooltip with some info on it.</Tooltip>
+	  		<Tooltip id="tooltip">This is a tooltip with some info on it.</Tooltip>
 		);
 
 		return(
@@ -17,41 +17,64 @@ export default class AccountDetails extends Component {
 							<OverlayTrigger placement="right" overlay={tooltip}>
 					      		<Glyphicon glyph="question-sign" />
 						    </OverlayTrigger>
-							Account Name <Glyphicon glyph="asterisk" />
+							Account Name <span class="required">*</span>
 						</ControlLabel>
 						<FormControl type="text"
 							value={accountDetails.accountName}
 							onChange={(e) => updateAccountDetails('accountName', e.target.value)}
-							onBlur={(e) => validate(['required'], e.target.value)}
 							placeholder="Account Name" 
 						/>
 					</FormGroup>
 					<FormGroup controlId="businessName">
-						<ControlLabel>Business Name <Glyphicon glyph="asterisk" /></ControlLabel>
-						<FormControl type="text" placeholder="Business Name" />
+						<ControlLabel>Business Name <span class="required">*</span></ControlLabel>
+						<FormControl type="text"
+							value={accountDetails.businessName}
+							onChange={(e) => updateAccountDetails('businessName', e.target.value)} 
+							placeholder="Business Name" 
+						/>
 					</FormGroup>
 					<FormGroup controlId="companyNumber">
-						<ControlLabel>Company Number <Glyphicon glyph="asterisk" /></ControlLabel>
-						<FormControl type="text" placeholder="Company Number" />
+						<ControlLabel>Company Number <span class="required">*</span></ControlLabel>
+						<FormControl type="text"
+							value={accountDetails.companyNumber}
+							onChange={(e) => updateAccountDetails('companyNumber', e.target.value)} 
+							placeholder="Company Number" 
+						/>
 					</FormGroup>
-					<FormGroup controlId="postcode">
-						<ControlLabel>Postcode <Glyphicon glyph="asterisk" /></ControlLabel>
-						<FormControl type="text" placeholder="Postcode" />
+					<FormGroup controlId="telephone">
+						<ControlLabel>Telephone <span class="required">*</span></ControlLabel>
+							<FormControl type="text"
+								value={accountDetails.telephone}
+								onChange={(e) => updateAccountDetails('telephone', e.target.value)}
+								placeholder="Telephone"
+							/>
 					</FormGroup>
 				</Col>
 				<Col sm={6} xs={12}>
-					<FormGroup controlId="telephone">
-						<ControlLabel>Telephone <Glyphicon glyph="asterisk" /></ControlLabel>
-						<FormControl type="text" placeholder="Telephone"/>
+					<FormGroup controlId="postcode">
+						<ControlLabel>Postcode <span class="required">*</span></ControlLabel>
+						<InputGroup>
+							<FormControl type="text"
+								value={accountDetails.postcode}
+								onChange={(e) => updateAccountDetails('postcode', e.target.value)}
+								placeholder="Postcode" 
+							/>
+							<InputGroup.Button>
+								<Button><Glyphicon glyph="search"/> Find Address</Button>
+							</InputGroup.Button>
+						</InputGroup>	
 					</FormGroup>
 					<FormGroup controlId="timezone">
 						<ControlLabel>
 							<OverlayTrigger placement="left" overlay={tooltip}>
 					      		<Glyphicon glyph="question-sign" />
 						    </OverlayTrigger>
-							Timezone <Glyphicon glyph="asterisk" />
+							Timezone <span class="required">*</span>
 						</ControlLabel>
-						<FormControl componentClass="select">
+						<FormControl 
+							componentClass="select"
+							value={accountDetails.timezone}
+							onChange={(e) => updateAccountDetails('timezone', e.target.value)}>
 							<option value="select">Please Select....</option>
 							<option value="-12">(GMT-12:00) International Date Line West</option>
 							<option value="-11">(GMT-11:00) Midway Island, Samoa</option>
@@ -137,15 +160,17 @@ export default class AccountDetails extends Component {
 						</FormControl>
 					</FormGroup>
 					<FormGroup controlId="paymentmethod">
-						<ControlLabel>Payment method <Glyphicon glyph="asterisk" /></ControlLabel>
-						<FormControl componentClass="select">
+						<ControlLabel>Payment method <span class="required">*</span></ControlLabel>
+						<FormControl componentClass="select"
+							value={accountDetails.paymentmethod}
+							onChange={(e) => updateAccountDetails('paymentmethod', e.target.value)}>
 							<option value="select">Please Select...</option>
 							<option value="banktransfer">Bank Transfer</option>
 							<option value="creditcard">Credit Card</option>
 							<option value="debitcard">Debit Card</option>
 						</FormControl>
 					</FormGroup>
-				</Col>													
+				</Col>											
 			</Form>
 		);
 	}

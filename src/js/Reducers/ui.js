@@ -5,7 +5,8 @@ const initialState = {
 const ui = (state = initialState, action) => {
 	switch(action.type){
 		case 'UPDATE_TAB':
-			return Object.assign({}, state, {'tab': action.tab});
+			var newTab = ++state.tab;
+			return Object.assign({}, state, {'tab': newTab});
 		default:
 			return state;
 	}

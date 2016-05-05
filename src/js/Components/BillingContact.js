@@ -1,28 +1,50 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, ControlLabel, FormControl, Col, Glyphicon, Button } from 'react-bootstrap';
+import { Form, FormGroup, ControlLabel, FormControl, Col, Glyphicon, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 export default class BillingContact extends Component {
 	render(){
+		const { billingContact, updateBillingContact } = this.props;
+
+		const tooltip = (
+	  		<Tooltip id="tooltip">This is a tooltip with some info on it.</Tooltip>
+		);
+
 		return(
 			<Form className='formContent'>
 				<Col sm={6} xs={12}>
 					<FormGroup controlId="billingFirstname">
-						<ControlLabel>First Name <Glyphicon glyph="asterisk" /></ControlLabel>
-						<FormControl type="text" placeholder="First Name" />
+						<ControlLabel>
+							<OverlayTrigger placement="right" overlay={tooltip}>
+					      		<Glyphicon glyph="question-sign" />
+						    </OverlayTrigger>
+							First Name <span class="required">*</span></ControlLabel>
+						<FormControl type="text"
+							value={billingContact.firstName}
+							onChange={(e) => updateBillingContact('firstName', e.target.value)} 
+							placeholder="First Name" />
 					</FormGroup>
 					<FormGroup controlId="billingLastName">
-						<ControlLabel>Last Name <Glyphicon glyph="asterisk" /></ControlLabel>
-						<FormControl type="text" placeholder="Last Name" />
+						<ControlLabel>Last Name <span class="required">*</span></ControlLabel>
+						<FormControl type="text"
+							value={billingContact.lastName}
+							onChange={(e) => updateBillingContact('lastName', e.target.value)} 
+							placeholder="Last Name" />
 					</FormGroup>
 					<FormGroup controlId="billingEmail">
-						<ControlLabel>Email <Glyphicon glyph="asterisk" /></ControlLabel>
-						<FormControl type="text" placeholder="Email" />
+						<ControlLabel>Email <span class="required">*</span></ControlLabel>
+						<FormControl type="text"
+							value={billingContact.email}
+							onChange={(e) => updateBillingContact('email', e.target.value)} 
+							placeholder="Email" />
 					</FormGroup>
 				</Col>
-				<Col sm={3} smOffset={3} xs={12}>
-					<Button bsStyle="primary" bsSize="large" block>Create Account</Button>
-				</Col>	
+				<Col class="burst hidden-xs" sm={6} xs={12}>
+					<img src="../img/burst.png"/>		
+				</Col>
+				<Col sm={6} xs={12} >
+					<Button bsStyle="danger" bsSize="large" block>Create Account</Button>	
+				</Col>
 			</Form>
 		);
 	}
-}
+}	

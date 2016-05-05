@@ -8,7 +8,6 @@ import UserDetails from '../Components/UserDetails';
 import BillingContact from '../Components/BillingContact';
 
 import { updateTab, updateAccountDetails, updateUserDetails, updateBillingContact } from '../Actions/AppActions';
-import { validate } from '../Actions/Validate'
 
 class AppContainer extends Component {
 	render(){
@@ -20,8 +19,10 @@ class AppContainer extends Component {
 			billingContact,
 			updateBillingContact, 
 			activeTab, 
-			selectTab, 
-			validateFunc } = this.props;
+			selectTab } = this.props;
+
+		const next = activeTab < 3 ? <Button bsStyle="primary" onClick={selectTab} block>Next</Button> : null;
+		
 		return(
 			<Grid fluid>
 				<Row id="header">
@@ -29,23 +30,35 @@ class AppContainer extends Component {
 					<div id="header-text">Account Signup</div>
 				</Row>
 				<Grid id="content">
-					<Row>
+					<Row class="wrapper">
 						<Col md={12} xs={12}>
 							<Tabs activeKey={this.props.activeTab} onSelect={this.props.selectTab} id="signup-form-tabs">
-								<Tab eventKey={1} title="1. Account Details">
+								<Tab eventKey={1} title="1. Account Details" disabled>
 									<AccountDetails
 										accountDetails={accountDetails} 
-										updateAccountDetails={updateAccountDetails} 
-										validate={validateFunc} />
+										updateAccountDetails={updateAccountDetails}/>
 								</Tab>
-								<Tab eventKey={2} title="2. User Details">
-									<UserDetails userDetails={userDetails}/>
+								<Tab eventKey={2} title="2. User Details" disabled>
+									<UserDetails 
+										userDetails={userDetails}
+										updateUserDetails={updateUserDetails}/>
 								</Tab>
-								<Tab eventKey={3} title="3. Billing Contact">
-									<BillingContact billingContact={billingContact}/>
+								<Tab eventKey={3} title="3. Billing Contact" disabled>
+									<BillingContact 
+										billingContact={billingContact}
+										updateBillingContact={updateBillingContact}/>
 								</Tab>
 							</Tabs>
 						</Col>
+						<Col md={12} xs={12}>
+							<div class="footer-left">
+								<span class="required">*</span> Required Field
+							</div>
+							<div class="footer-right">
+								{next}
+							</div>
+						</Col>
+						
 					</Row>
 				</Grid>
 			</Grid>
@@ -64,8 +77,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		selectTab: (tab) => {
-			return dispatch(updateTab(tab));
+		selectTab: () => {
+			return dispatch(updateTab());
 		},
 		updateAccountDetails: (key, value) => {
 			return dispatch(updateAccountDetails(key, value));
@@ -75,9 +88,6 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		updateBillingContact: (key, value) => {
 			return dispatch(updateBillingContact(key, value));
-		},
-		validateFunc: (validationTypes, value) => {
-			return dispatch(validate(validationTypes, value));
 		}
 	}
 }
@@ -90,8 +100,7 @@ AppContainer.propTypes = {
 	selectTab: PropTypes.func.isRequired,
 	updateAccountDetails: PropTypes.func.isRequired,
 	updateUserDetails: PropTypes.func.isRequired,
-	updateBillingContact: PropTypes.func.isRequired,
-	validateFunc: PropTypes.func.isRequired
+	updateBillingContact: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
