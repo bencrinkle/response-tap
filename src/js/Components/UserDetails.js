@@ -34,7 +34,7 @@ export default class UserDetails extends Component {
 					      		<Glyphicon glyph="question-sign" />
 						    </OverlayTrigger>
 							Password Confirmation <span class="required">*</span></ControlLabel>
-						<FormControl type="text"
+						<FormControl type="password"
 							value={userDetails.passwordConfirmation}
 							onChange={(e) => updateUserDetails('passwordConfirmation', e.target.value)} 
 							placeholder="Password Confirmation" 
