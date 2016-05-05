@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, ControlLabel, FormControl, Col, Panel } from 'react-bootstrap';
+import { Form, FormGroup, ControlLabel, FormControl, Col, Glyphicon, OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 export default class AccountDetails extends Component {
 	render(){
 		const { accountDetails, updateAccountDetails, validate } = this.props;
+
+		const tooltip = (
+	  		<Tooltip>This is a tooltip with some info on it.</Tooltip>
+		);
+
 		return(
 			<Form className='formContent'>
 				<Col sm={6} xs={12}>
 					<FormGroup controlId="accountName">
-						<ControlLabel>Account Name</ControlLabel>
+						<ControlLabel>
+							<OverlayTrigger placement="right" overlay={tooltip}>
+					      		<Glyphicon glyph="question-sign" />
+						    </OverlayTrigger>
+							Account Name <Glyphicon glyph="asterisk" />
+						</ControlLabel>
 						<FormControl type="text"
 							value={accountDetails.accountName}
 							onChange={(e) => updateAccountDetails('accountName', e.target.value)}
@@ -17,25 +27,30 @@ export default class AccountDetails extends Component {
 						/>
 					</FormGroup>
 					<FormGroup controlId="businessName">
-						<ControlLabel>Business Name</ControlLabel>
+						<ControlLabel>Business Name <Glyphicon glyph="asterisk" /></ControlLabel>
 						<FormControl type="text" placeholder="Business Name" />
 					</FormGroup>
 					<FormGroup controlId="companyNumber">
-						<ControlLabel>Company Number</ControlLabel>
+						<ControlLabel>Company Number <Glyphicon glyph="asterisk" /></ControlLabel>
 						<FormControl type="text" placeholder="Company Number" />
 					</FormGroup>
 					<FormGroup controlId="postcode">
-						<ControlLabel>Postcode</ControlLabel>
+						<ControlLabel>Postcode <Glyphicon glyph="asterisk" /></ControlLabel>
 						<FormControl type="text" placeholder="Postcode" />
 					</FormGroup>
 				</Col>
 				<Col sm={6} xs={12}>
 					<FormGroup controlId="telephone">
-						<ControlLabel>Telephone</ControlLabel>
+						<ControlLabel>Telephone <Glyphicon glyph="asterisk" /></ControlLabel>
 						<FormControl type="text" placeholder="Telephone"/>
 					</FormGroup>
 					<FormGroup controlId="timezone">
-						<ControlLabel>Timezone</ControlLabel>
+						<ControlLabel>
+							<OverlayTrigger placement="left" overlay={tooltip}>
+					      		<Glyphicon glyph="question-sign" />
+						    </OverlayTrigger>
+							Timezone <Glyphicon glyph="asterisk" />
+						</ControlLabel>
 						<FormControl componentClass="select">
 							<option value="select">Please Select....</option>
 							<option value="-12">(GMT-12:00) International Date Line West</option>
@@ -122,7 +137,7 @@ export default class AccountDetails extends Component {
 						</FormControl>
 					</FormGroup>
 					<FormGroup controlId="paymentmethod">
-						<ControlLabel>Payment method</ControlLabel>
+						<ControlLabel>Payment method <Glyphicon glyph="asterisk" /></ControlLabel>
 						<FormControl componentClass="select">
 							<option value="select">Please Select...</option>
 							<option value="banktransfer">Bank Transfer</option>

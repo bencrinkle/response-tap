@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, ControlLabel, FormControl, Col, Panel } from 'react-bootstrap';
+import { Form, FormGroup, ControlLabel, FormControl, Col, Glyphicon } from 'react-bootstrap';
 
 export default class UserDetails extends Component {
 	render(){
@@ -7,29 +7,29 @@ export default class UserDetails extends Component {
 			<Form className='formContent'>
 				<Col sm={6} xs={12}>
 					<FormGroup controlId="username">
-						<ControlLabel>Username</ControlLabel>
+						<ControlLabel>Username <Glyphicon glyph="asterisk" /></ControlLabel>
 						<FormControl type="text" placeholder="Username" />
 					</FormGroup>
 					<FormGroup controlId="password">
-						<ControlLabel>Password</ControlLabel>
+						<ControlLabel>Password <Glyphicon glyph="asterisk" /></ControlLabel>
 						<FormControl type="password" placeholder="Password" />
 					</FormGroup>
 					<FormGroup controlId="passwordConfirmation">
-						<ControlLabel>Password Confirmation</ControlLabel>
+						<ControlLabel>Password Confirmation <Glyphicon glyph="asterisk" /></ControlLabel>
 						<FormControl type="text" placeholder="Password Confirmation" />
 					</FormGroup>
 				</Col>
 				<Col sm={6} xs={12}>
 					<FormGroup controlId="firstName">
-						<ControlLabel>First Name</ControlLabel>
+						<ControlLabel>First Name <Glyphicon glyph="asterisk" /></ControlLabel>
 						<FormControl type="text" placeholder="First Name" />
 					</FormGroup>
 					<FormGroup controlId="lastName">
-						<ControlLabel>Last Name</ControlLabel>
+						<ControlLabel>Last Name <Glyphicon glyph="asterisk" /></ControlLabel>
 						<FormControl type="text" placeholder="Last Name"/>
 					</FormGroup>
 					<FormGroup controlId="email">
-						<ControlLabel>Email</ControlLabel>
+						<ControlLabel>Email <Glyphicon glyph="asterisk" /></ControlLabel>
 						<FormControl type="email" placeholder="Email"/>
 					</FormGroup>
 				</Col>			

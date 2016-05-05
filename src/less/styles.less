@@ -1,7 +1,59 @@
 @import "node_modules/bootstrap/less/bootstrap.less";
-@import "./variables.less";
-@import "./bootswatch.less";
 
-.tab-content {
-	margin-top: 20px;
+body {
+	background: #058184;
+	color: #fff;
+	font-family: "Arial";
+}
+
+#header { 
+    padding: 10px 0;
+	background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 1px 8px;
+    color: #333;
+
+	.logo {
+		width: 127px;
+		margin-left: 30px;		
+	}
+
+	#header-text { 
+		float: right;
+		margin-right: 30px;
+		margin-top: 10px;
+		font-size: 18px;
+	}
+}
+
+#content {
+	padding-top: 30px;
+
+	#signup-form-tabs {
+		.nav-tabs {
+			border-bottom: 1px solid #5CBFCB;
+
+			li a {
+				color: #fff;
+			}
+
+			li a:hover {
+				background: none;
+				border: 1px solid #058184;
+				border-bottom: 1px solid #5CBFCB;
+				color: #5CBFCB;
+			}
+
+			li.active a { 
+				background: #5CBFCB;
+				border: 1px solid #5CBFCB;
+			}
+
+			li.active a:hover {
+				color: #fff;
+			}
+		}
+	}
+	.tab-content {
+		margin-top: 20px;
+	}
 }

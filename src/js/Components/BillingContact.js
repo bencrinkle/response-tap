@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, ControlLabel, FormControl, Col, Panel } from 'react-bootstrap';
+import { Form, FormGroup, ControlLabel, FormControl, Col, Glyphicon, Button } from 'react-bootstrap';
 
 export default class BillingContact extends Component {
 	render(){
@@ -7,18 +7,21 @@ export default class BillingContact extends Component {
 			<Form className='formContent'>
 				<Col sm={6} xs={12}>
 					<FormGroup controlId="billingFirstname">
-						<ControlLabel>First Name</ControlLabel>
+						<ControlLabel>First Name <Glyphicon glyph="asterisk" /></ControlLabel>
 						<FormControl type="text" placeholder="First Name" />
 					</FormGroup>
 					<FormGroup controlId="billingLastName">
-						<ControlLabel>Last Name</ControlLabel>
+						<ControlLabel>Last Name <Glyphicon glyph="asterisk" /></ControlLabel>
 						<FormControl type="text" placeholder="Last Name" />
 					</FormGroup>
 					<FormGroup controlId="billingEmail">
-						<ControlLabel>Email</ControlLabel>
+						<ControlLabel>Email <Glyphicon glyph="asterisk" /></ControlLabel>
 						<FormControl type="text" placeholder="Email" />
 					</FormGroup>
-				</Col>			
+				</Col>
+				<Col sm={3} smOffset={3} xs={12}>
+					<Button bsStyle="primary" bsSize="large" block>Create Account</Button>
+				</Col>	
 			</Form>
 		);
 	}

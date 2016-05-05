@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 
-import { Grid, Row, Col, Tabs, Tab } from 'react-bootstrap';
+import { Grid, Row, Col, Tabs, Tab, Button } from 'react-bootstrap';
 
 import AccountDetails from '../Components/AccountDetails';
 import UserDetails from '../Components/UserDetails';
@@ -23,30 +23,31 @@ class AppContainer extends Component {
 			selectTab, 
 			validateFunc } = this.props;
 		return(
-			<Grid>
-				<Row>
-					<Col md={12} xs={12}>
-						<img className="logo" src="./img/rt-logo.png"/>
-					</Col>
+			<Grid fluid>
+				<Row id="header">
+					<img className="logo" src="./img/rt-logo.png"/>
+					<div id="header-text">Account Signup</div>
 				</Row>
-				<Row>
-					<Col md={12} xs={12}>
-						<Tabs activeKey={this.props.activeTab} onSelect={this.props.selectTab} id="signup-form-tabs">
-							<Tab eventKey={1} title="Account Details">
-								<AccountDetails
-									accountDetails={accountDetails} 
-									updateAccountDetails={updateAccountDetails} 
-									validate={validateFunc} />
-							</Tab>
-							<Tab eventKey={2} title="User Details">
-								<UserDetails userDetails={userDetails}/>
-							</Tab>
-							<Tab eventKey={3} title="Billing Contact">
-								<BillingContact billingContact={billingContact}/>
-							</Tab>
-						</Tabs>
-					</Col>
-				</Row>
+				<Grid id="content">
+					<Row>
+						<Col md={12} xs={12}>
+							<Tabs activeKey={this.props.activeTab} onSelect={this.props.selectTab} id="signup-form-tabs">
+								<Tab eventKey={1} title="1. Account Details">
+									<AccountDetails
+										accountDetails={accountDetails} 
+										updateAccountDetails={updateAccountDetails} 
+										validate={validateFunc} />
+								</Tab>
+								<Tab eventKey={2} title="2. User Details">
+									<UserDetails userDetails={userDetails}/>
+								</Tab>
+								<Tab eventKey={3} title="3. Billing Contact">
+									<BillingContact billingContact={billingContact}/>
+								</Tab>
+							</Tabs>
+						</Col>
+					</Row>
+				</Grid>
 			</Grid>
 		);
 	}
