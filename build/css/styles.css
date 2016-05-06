@@ -6762,6 +6762,14 @@ label .glyphicon {
 .btn-primary:hover {
   color: #046A6C;
 }
+.btn-danger,
+.btn-danger:hover,
+.btn-danger:active,
+.btn-danger:focus,
+.btn-danger:active:focus {
+  background: #CE2126;
+  border: 1px solid #CE2126;
+}
 #content {
   padding-top: 30px;
 }
