@@ -7,7 +7,8 @@ const initialState = {
 	addresses: [],
 	telephone: "",
 	timezone: "",
-	paymentmethod: ""
+	paymentmethod: "",
+	gettingAddresses: false
 };
 
 const accountDetails = (state = initialState, action) => {
@@ -16,6 +17,12 @@ const accountDetails = (state = initialState, action) => {
 			var tmpAcccountDetails = {};
 			tmpAcccountDetails[action.key] = action.value;
 			return Object.assign({}, state, tmpAcccountDetails);
+		case 'GET_ADDRESSES_PENDING':
+			return Object.assign({}, state, {gettingAddresses: true});
+		case 'GET_ADDRESSES_SUCCESS':
+			return Object.assign({}, state, {gettingAddresses: false, addresses: action.addresses.Addresses});
+		case 'GET_ADDRESSES_ERROR':
+			return Object.assign({}, state, {gettingAddresses: false, errors: action.error});
 		default:
 			return state;
 	}

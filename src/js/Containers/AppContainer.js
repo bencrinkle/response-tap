@@ -7,7 +7,7 @@ import AccountDetails from '../Components/AccountDetails';
 import UserDetails from '../Components/UserDetails';
 import BillingContact from '../Components/BillingContact';
 
-import { updateTab, updateAccountDetails, updateUserDetails, updateBillingContact } from '../Actions/AppActions';
+import { updateTab, updateAccountDetails, updateUserDetails, updateBillingContact, getAddresses } from '../Actions/AppActions';
 
 class AppContainer extends Component {
 	render(){
@@ -19,10 +19,11 @@ class AppContainer extends Component {
 			billingContact,
 			updateBillingContact, 
 			activeTab, 
-			selectTab } = this.props;
+			selectTab,
+			postcodeLookup } = this.props;
 
 		const next = activeTab < 3 ? <Button bsStyle="primary" onClick={selectTab} block>Next</Button> : null;
-		
+
 		return(
 			<Grid fluid>
 				<Row id="header">
@@ -36,7 +37,8 @@ class AppContainer extends Component {
 								<Tab eventKey={1} title="1. Account Details" disabled>
 									<AccountDetails
 										accountDetails={accountDetails} 
-										updateAccountDetails={updateAccountDetails}/>
+										updateAccountDetails={updateAccountDetails}
+										postcodeLookup={postcodeLookup}/>
 								</Tab>
 								<Tab eventKey={2} title="2. User Details" disabled>
 									<UserDetails 
@@ -88,6 +90,9 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		updateBillingContact: (key, value) => {
 			return dispatch(updateBillingContact(key, value));
+		},
+		postcodeLookup: (postcode) => {
+			return dispatch(getAddresses(postcode));
 		}
 	}
 }
@@ -100,7 +105,8 @@ AppContainer.propTypes = {
 	selectTab: PropTypes.func.isRequired,
 	updateAccountDetails: PropTypes.func.isRequired,
 	updateUserDetails: PropTypes.func.isRequired,
-	updateBillingContact: PropTypes.func.isRequired
+	updateBillingContact: PropTypes.func.isRequired,
+	postcodeLookup: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

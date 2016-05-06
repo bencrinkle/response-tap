@@ -3,11 +3,24 @@ import { Form, FormGroup, ControlLabel, FormControl, Col, Glyphicon, OverlayTrig
 
 export default class AccountDetails extends Component {
 	render(){
-		const { accountDetails, updateAccountDetails } = this.props;
+		const { accountDetails, updateAccountDetails, postcodeLookup } = this.props;
 
 		const tooltip = (
 	  		<Tooltip id="tooltip">This is a tooltip with some info on it.</Tooltip>
 		);
+
+		const addresses = accountDetails.addresses.length > 0 ?
+					(<FormGroup controlId="addresses">
+						<ControlLabel>Address <span class="required">*</span></ControlLabel>
+						<FormControl componentClass="select"
+							value={accountDetails.address}
+							onChange={(e) => updateAccountDetails('address', e.target.value)}>
+							<option value="select">Please Select...</option>
+							{accountDetails.addresses.map((address, i) => {
+								return(<option key={i} value={address}>{address}</option>);	
+							})}
+						</FormControl>
+					</FormGroup>) : null;
 
 		return(
 			<Form className='formContent'>
@@ -60,10 +73,11 @@ export default class AccountDetails extends Component {
 								placeholder="Postcode" 
 							/>
 							<InputGroup.Button>
-								<Button><Glyphicon glyph="search"/> Find Address</Button>
+								<Button onClick={() => postcodeLookup(accountDetails.postcode)}><Glyphicon glyph="search"/> Find Address</Button>
 							</InputGroup.Button>
 						</InputGroup>	
 					</FormGroup>
+					{addresses}
 					<FormGroup controlId="timezone">
 						<ControlLabel>
 							<OverlayTrigger placement="left" overlay={tooltip}>
